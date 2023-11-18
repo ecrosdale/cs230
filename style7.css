@@ -7,28 +7,33 @@ body
     
 }
 .card1 {
-    background-color: deeppink;
+    background-color: rgb(255, 20, 235);
     color: antiquewhite;
     padding: 1rem;
     height: 2em;
 }
 .card2 {
-    background-color: deeppink;
+    background-color: rgb(189, 65, 131);
     color: antiquewhite;
     padding: 1rem;
     height: 2em;
 }
 .card3 {
-    background-color: deeppink;
+    background-color: rgb(255, 20, 184);
     color: antiquewhite;
     padding: 1rem;
     height: 2em;
 }
 .card4 {
-    background-color: deeppink;
+    background-color: rgb(243, 130, 190);
     color: antiquewhite;
     padding: 1rem;
     height: 2em;
 }
 
+.cards { display: flex; }
+
+@media screen and (max-width: 600px) {
+  * { flex-direction: column; }
+}
 
