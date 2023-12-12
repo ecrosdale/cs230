@@ -4,9 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAKE SOME NOTES</title>
     <style>
+      
         h1 {
+            text-align: center;
+            margin: 0;
             font-size: 300%;
             color:rgb(229, 75, 173)
+            
         }
 
         body {
@@ -31,9 +35,11 @@
             width: calc(100% - 20px);
             padding: 100px;
             margin-bottom: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ef36be;
             border-radius: 4px;
             resize: none;
+            font-size: xx-large;
+            
         }
 
         #noteList {
@@ -89,6 +95,7 @@
             if (event.key === "Enter" && !event.shiftKey) {
                 event.preventDefault();
                 addNote();
+                
             }
         });
 
@@ -106,12 +113,17 @@
                
 
                 noteList.appendChild(noteItem);
+                length = JSON.parse(window.localStorage.getItem('length'))
+                length = int(length)
+                length += 1
+                window.localStorage.setitem(length, JSON.stringify(noteText))
+                window.localStorage.setitem('length', lenght)
 
                 noteInput.value = "";
             }
         }
     });
 </script>
-<a href="index.html" > thanks bye!</a>
+
 </body>
 </html>
