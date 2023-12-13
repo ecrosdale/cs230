@@ -4,7 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAKE SOME NOTES</title>
     <style>
-      
+        /* p {
+            background-image: url('pinkbgd.jpg');
+        } */
         h1 {
             text-align: center;
             margin: 0;
@@ -12,15 +14,16 @@
             color:rgb(229, 75, 173)
             
         }
-
+        
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
+            background-image: url('pinkbgd.jpg') ;
             overflow: hidden;
         }
-
+        
         #app {
             max-width: 600px;
             margin: 80px auto;
@@ -29,7 +32,7 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
+        
         #noteInput {
             background-color: rgb(245, 220, 236);
             width: calc(100% - 20px);
@@ -41,13 +44,13 @@
             font-size: xx-large;
             
         }
-
+        
         #noteList {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
+        
         .note {
             background-color: #e45ab6;
             border: 1px solid #ddd;
@@ -59,17 +62,17 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
+        
         .note:hover {
             background-color: #8f8888;
         }
-
+        
         .note p {
             margin: 0;
         }
-
-       
-
+        
+        
+        
         @media (max-width: 600px) {
             #app {
                 border-radius: 0;
@@ -79,51 +82,63 @@
     </style>
 </head>
 <body>
-   <i><h1>Pretty Pink NOTES</h1></i> 
+    <i><h1>Pretty Pink NOTES</h1></i> 
+    
+    <div id="app">
+        <textarea id="noteInput" placeholder="click me to type :)"></textarea>
+        <ul id="noteList"></ul>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const noteInput = document.getElementById("noteInput");
+            const noteList = document.getElementById("noteList");
 
-<div id="app">
-    <textarea id="noteInput" placeholder="click me to type :)"></textarea>
-    <ul id="noteList"></ul>
-</div>
+            var noteArray = [];
+            if(window.localStorage.getItem('noteArray'))
+            {
+                noteArray= JSON.parse(window.localStorage.getItem('noteArray'));
+                for(let noteText of noteArray)
+                {
+                    noteInput.value= noteText;
+                    addNote()
+                }
+            }
+            
+            noteInput.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    addNote();
+                    
+                }
+            });
+            
+            function addNote() {
+                const noteText = noteInput.value.trim();
+                if (noteText !== "") {
+                    const noteItem = document.createElement("li");
+                    noteItem.classList.add("note");
+                    
+                    const noteContent = document.createElement("p");
+                    noteContent.textContent = noteText;
+                    
+                    noteItem.appendChild(noteContent);
+                    noteList.appendChild(noteItem);
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const noteInput = document.getElementById("noteInput");
-        const noteList = document.getElementById("noteList");
+                    noteArray.push(noteText);
+                    window.localStorage.setItem('noteArray', JSON.stringify(noteArray));
 
-        noteInput.addEventListener("keydown", function (event) {
-            if (event.key === "Enter" && !event.shiftKey) {
-                event.preventDefault();
-                addNote();
-                
+                    // length = JSON.parse(window.localStorage.getItem('length'))
+                    // length = int(length)
+                    // length += 1
+                    // window.localStorage.setitem(length, JSON.stringify(noteText))
+                    // window.localStorage.setitem('length', lenght)
+                    
+                    noteInput.value = "";
+                }
             }
         });
-
-        function addNote() {
-            const noteText = noteInput.value.trim();
-            if (noteText !== "") {
-                const noteItem = document.createElement("li");
-                noteItem.classList.add("note");
-
-                const noteContent = document.createElement("p");
-                noteContent.textContent = noteText;
-
-
-                noteItem.appendChild(noteContent);
-               
-
-                noteList.appendChild(noteItem);
-                length = JSON.parse(window.localStorage.getItem('length'))
-                length = int(length)
-                length += 1
-                window.localStorage.setitem(length, JSON.stringify(noteText))
-                window.localStorage.setitem('length', lenght)
-
-                noteInput.value = "";
-            }
-        }
-    });
-</script>
-
+    </script>
+    
 </body>
 </html>
