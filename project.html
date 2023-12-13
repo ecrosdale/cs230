@@ -95,13 +95,13 @@
             const noteList = document.getElementById("noteList");
 
             var noteArray = [];
-            if(window.localStorage.getItem('noteArray'))
+            if(window.localStorage.getItem('noteArray'));
             {
                 noteArray= JSON.parse(window.localStorage.getItem('noteArray'));
-                for(let noteText of noteArray)
+                for(let noteText of noteArray);
                 {
-                    noteInput.value= noteText;
-                    addNote()
+                    noteInput.value= noteArray;
+                    addNote();
                 }
             }
             
