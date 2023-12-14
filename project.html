@@ -99,8 +99,13 @@
                 for(let noteText of noteArray)
                 {
 
-                    noteInput.value= noteArray;
-                    addNote();
+                    noteItem.classList.add("note");
+                    
+                    const noteContent = document.createElement("p");
+                    noteContent.textContent = noteText;
+                    
+                    noteItem.appendChild(noteContent);
+                    noteList.appendChild(noteItem);
                 }
             }
             
