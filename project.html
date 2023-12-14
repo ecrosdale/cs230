@@ -93,13 +93,14 @@
         document.addEventListener("DOMContentLoaded", function () {
             const noteInput = document.getElementById("noteInput");
             const noteList = document.getElementById("noteList");
-
-            var noteArray = [];
-            if(window.localStorage.getItem('noteArray'));
+         
+         var noteArray = [];
+            if(window.localStorage.getItem('noteArray'))
             {
                 noteArray= JSON.parse(window.localStorage.getItem('noteArray'));
-                for(let noteText of noteArray);
+                for(let noteText of noteArray)
                 {
+
                     noteInput.value= noteArray;
                     addNote();
                 }
@@ -133,12 +134,16 @@
                     // length += 1
                     // window.localStorage.setitem(length, JSON.stringify(noteText))
                     // window.localStorage.setitem('length', lenght)
-                    
+
                     noteInput.value = "";
                 }
             }
-        });
+            }
+        );
     </script>
+    </script>
+    
+    </script>  
     
 </body>
 </html>
